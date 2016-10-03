@@ -1,9 +1,8 @@
 var Grid = require('./grid.js');
 var Tile = require('./tile.js');
 
-function GameManager(size, StorageManager) {
+function GameManager(size) {
     this.size = size;
-    this.storageManager = new StorageManager();
     this.startTiles = 2;
 }
 

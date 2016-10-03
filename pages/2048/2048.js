@@ -2,7 +2,6 @@ var app = getApp();
 
 var Grid = require('./grid.js');
 var Tile = require('./tile.js');
-var LocalStorageManager = require('./local_storage_manager.js');
 var GameManager = require('./game_manager.js');
 
 var config = {
@@ -18,10 +17,11 @@ var config = {
         overMsg: '游戏结束'
     },
     onLoad: function() {
-        this.GameManager = new GameManager(4, LocalStorageManager);
+        this.GameManager = new GameManager(4);
 
         this.setData({
-            grids: this.GameManager.setup()
+            grids: this.GameManager.setup(),
+            highscore: wx.getStorageSync('highscore') || 0
         });
 
     },
@@ -115,11 +115,17 @@ var config = {
                 score: this.data.score
             };
 
+            var highscore = wx.getStorageSync('highscore') || 0;
+            if(data.score > highscore){
+                wx.setStorageSync('highscore', data.score);
+            }
+
             this.updateView({
                 grids: data.grids,
                 over: data.over,
                 won: data.won,
-                score: data.score
+                score: data.score,
+                highscore: Math.max(highscore, data.score)
             });
 
         }

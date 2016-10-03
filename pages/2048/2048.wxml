@@ -8,7 +8,7 @@
       	<text class="title">2048</text>
       	<view class="scores-container">
         	<view class="score-container">{{score}}</view>
-      		<!-- <view class="best-container">{{highscore}}</view> -->
+      		<view class="best-container">{{highscore}}</view>
       	</view>
     </view>
 
