@@ -15,7 +15,6 @@ GameManager.prototype = {
         this.over = false;
         this.won = false;
         this.addStartTiles();
-        // this.actuate();
         return this.grid.cells;
     },
 
@@ -39,34 +38,18 @@ GameManager.prototype = {
     },
 
     actuate: function() {
-        return this.grid.cells;
-        // this.actuator.actuate(this.grid, {
-        //     score: this.score,
-        //     over: this.over,
-        //     won: this.won
-        // });
+
+        return {
+            grids: this.grid.cells,
+            over: this.over,
+            won: this.won,
+            score: this.score
+        }
     },
 
     // 偏移向量
     getVector: function(direction) {
-        // var map = {
-        //     0: { // 上
-        //         x: 0,
-        //         y: -1
-        //     },
-        //     1: { // 右
-        //         x: 1,
-        //         y: 0
-        //     },
-        //     2: { // 下
-        //         x: 0,
-        //         y: 1
-        //     },
-        //     3: { // 左
-        //         x: -1,
-        //         y: 0
-        //     }
-        // };
+        
         var map = {
             0: { // 上
                 x: -1,

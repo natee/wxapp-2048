@@ -2,7 +2,6 @@ var app = getApp();
 
 var Grid = require('./grid.js');
 var Tile = require('./tile.js');
-// var InputManager = require('./keyboard_input_manager.js');
 var LocalStorageManager = require('./local_storage_manager.js');
 var GameManager = require('./game_manager.js');
 
@@ -12,8 +11,11 @@ var config = {
 
         // 游戏数据可以通过参数控制
         grids: [],
+        over: false,
+        win: false,
         score: 0,
-        highscore: 0
+        highscore: 0,
+        overMsg: '游戏结束'
     },
     onLoad: function() {
         this.GameManager = new GameManager(4, LocalStorageManager);
@@ -22,7 +24,6 @@ var config = {
             grids: this.GameManager.setup()
         });
 
-        console.log('初始化数据：', this.data.grids);
     },
     onReady: function() {
         var that = this;
@@ -42,15 +43,28 @@ var config = {
         // 页面关闭
     },
 
-    updateView: function(grids) {
-        this.setData({
-            grids: grids
-        });
+    // 更新视图数据
+    updateView: function(data) {
+        // 游戏结束
+        if(data.over){
+            data.overMsg = '游戏结束';
+        }
+
+        // 获胜
+        if(data.win){
+            data.overMsg = '恭喜';
+        }
+
+        this.setData(data);
     },
 
+    // 重新开始
     restart: function() {
-        this.setData({
-            grids: this.GameManager.restart()
+        this.updateView({
+            grids: this.GameManager.restart(),
+            over: false,
+            won: false,
+            score: 0
         });
     },
 
@@ -62,6 +76,7 @@ var config = {
 
     touchStart: function(events) {
 
+        // 多指操作
         this.isMultiple = events.touches.length > 1;
         if (this.isMultiple) {
             return;
@@ -91,11 +106,21 @@ var config = {
         var absDy = Math.abs(dy);
 
         if (Math.max(absDx, absDy) > 10) {
-            var newGrids = this.GameManager.move(absDx > absDy 
-                ? (dx > 0 ? 1 : 3) 
-                : (dy > 0 ? 2 : 0)) 
-            || this.data.grids;
-            this.updateView(newGrids);
+            var direction = absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0);
+
+            var data = this.GameManager.move(direction) || {
+                grids: this.data.grids,
+                over: this.data.over,
+                won: this.data.won,
+                score: this.data.score
+            };
+
+            this.updateView({
+                grids: data.grids,
+                over: data.over,
+                won: data.won,
+                score: data.score
+            });
 
         }
 
