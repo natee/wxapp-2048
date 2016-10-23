@@ -15,3 +15,4 @@
 
 - [2048游戏](https://github.com/gabrielecirulli/2048)
 - [微信小程序资源](https://github.com/justjavac/awesome-wechat-weapp)
+- [微信小程序开发教程手册](http://www.w3cschool.cn/weixinapp/9wou1q8j.html)

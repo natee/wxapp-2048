@@ -19,13 +19,9 @@
     "backgroundColor": "#ffffff",
     "list": [{
       "pagePath": "pages/index/index",
-      "iconPath": "",
-      "selectedIconPath": "",
       "text": "游戏"
     }, {
       "pagePath": "pages/logs/logs",
-      "iconPath": "",
-      "selectedIconPath": "",
       "text": "日志"
     }]
   },
