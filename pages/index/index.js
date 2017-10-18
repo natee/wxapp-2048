@@ -31,6 +31,7 @@ var config = {
     }
 };
 
+//设置属性名"startName"到相应游戏页面的映射
 config.data.gameList.forEach(function(v) {
     config['start' + v] = function() {
 

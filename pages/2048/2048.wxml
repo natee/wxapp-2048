@@ -18,6 +18,8 @@
     </view>
 
     <view class="game-container">
+
+        <!--游戏结束显示  -->
         <view class="game-message game-{{over ? (win ? 'won' : 'over') : ''}}">
           	<text class="over-msg">{{overMsg}}</text>
           	<view class="lower">
