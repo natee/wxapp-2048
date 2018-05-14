@@ -29,8 +29,8 @@
         </view>
 
 	    <view class="grid-container" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
-			<view wx:for="{{grids}}" wx:for-index="rowIdx" wx:for-item="row" class="grid-row">
-			  	<view wx:for="{{row}}" wx:for-index="colIdx" wx:for-item="cell" class="grid-cell">
+			<view wx:for="{{grids}}" wx:for-index="rowIdx" wx:key="rowIdx" wx:for-item="row" class="grid-row">
+			  	<view wx:for="{{row}}" wx:for-index="colIdx" wx:key="colIdx" wx:for-item="cell" class="grid-cell">
 			  		<view class="tile tile-{{cell.value}}">
 			  			<view wx:if="{{cell}}" class="tile-inner">
 			      			{{cell.value}}

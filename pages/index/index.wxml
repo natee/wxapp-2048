@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   	
-	<view wx:for-items="{{gameList}}" class="usermotto">
+	<view wx:for-items="{{gameList}}" wx:for-index="idx" wx:key="idx" class="usermotto">
 	    <button type="primary" disabled="{{disabled}}" bindtap="start{{item}}"> {{item}} </button>
 	</view>
 
